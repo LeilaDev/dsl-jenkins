@@ -58,5 +58,16 @@ pipeline{
                 }
             }
         }
+        stage("Pull Repo"){
+            steps{
+                git("https://github.com/LeilaDev/packer_hashi.git")
+                
+            }
+        }
+        stage("Build Image"){
+            steps{
+                sh " packer build updated/updated.json"
+            }
+        }
     }
 }
