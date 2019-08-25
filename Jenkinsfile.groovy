@@ -12,7 +12,7 @@ pipeline{
                 '''
             }
         }
-       tage("Download Terraform"){
+       stage("Download Terraform"){
             steps{
                 ws("tmp/"){
                     script {
