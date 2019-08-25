@@ -70,4 +70,8 @@ pipeline{
             }
         }
     }
+    post{
+      success {
+          mail to:  leiladevops@gmail.com, subject: “job”, body: “job completed"
+  }
 }
