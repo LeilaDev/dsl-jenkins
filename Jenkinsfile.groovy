@@ -70,6 +70,14 @@ pipeline{
                 echo "Hello"
             }
         }
+        stage("Build VPC"){
+            steps{
+                ws("terraform/"){
+                    git "https://github.com/LeilaDev/infrastructure_april.git"
+                }
+            }
+
+        }
     }
     post{
       success {
