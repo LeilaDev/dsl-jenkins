@@ -74,6 +74,8 @@ pipeline{
             steps{
                 ws("terraform/"){
                     git "https://github.com/LeilaDev/infrastructure_april.git"
+                    sh "pwd"
+                    sh "ls"
                 }
             }
 
