@@ -71,11 +71,25 @@ pipeline{
                 }
             }
         }
-        stage("Build VPC "){
+        stage("Get module"){
             steps{
                 ws("terraform/"){
                     sh "terraform get"
+                }
+            }
+        }
+         stage("Initialize terraformC "){
+            steps{
+                ws("terraform/"){
                     sh "terraform init"
+                }
+            }
+        }
+         stage("Build VPC "){
+            steps{
+                ws("terraform/"){
+                   
+                    sh "terraform  ${USER_ACTION}-var-file=dev.tfvars"
                 }
             }
         }
@@ -85,7 +99,7 @@ pipeline{
             echo "Done"
         }
         failure {
-            mail to:  "leiladevops@gmail.com", subject: "job", body: "job completed"
+            mail to:  "farrukhsadykov@gmail.com", subject: "job", body: "job completed"
         }
     }
 }
