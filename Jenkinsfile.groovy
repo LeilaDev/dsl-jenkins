@@ -75,16 +75,15 @@ pipeline{
                 ws("terraform/"){
                     git "https://github.com/LeilaDev/infrastructure_april.git"
                 }
-            }
+           }
 
         }
-         stage("Clone VPV Repo"){
+         stage("Build VPC"){
             steps{
                 ws("terraform/"){
-                    sh "terraform plan --var-file=dev.tfvars"
+                    sh "terraform init"
                 }
             }
-
         }
     }
     post{
