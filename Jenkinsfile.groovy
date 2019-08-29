@@ -1,6 +1,6 @@
 pipeline{
     agent any
-    parameters {string(defaultValue: "plan", description: "plan or apply", name: 'USER_ACTION')}
+    parameters {string(defaultValue: "plan", description: "plan, apply, destroy", name: 'USER_ACTION')}
     stages{
         stage("Run Command"){
             steps{
@@ -79,7 +79,7 @@ pipeline{
                 }
             }
         }
-         stage("Initialize terraformC "){
+        stage("initialize terraform"){
             steps{
                 ws("terraform/"){
                     sh "terraform init"
@@ -89,8 +89,7 @@ pipeline{
          stage("Build VPC "){
             steps{
                 ws("terraform/"){
-                   
-                    sh "terraform  ${USER_ACTION}-var-file=dev.tfvars"
+                    sh "terraform  ${USER_ACTION} -var-file=dev.tfvars -auto-approve"
                 }
             }
         }
@@ -100,7 +99,7 @@ pipeline{
             echo "Done"
         }
         failure {
-            mail to:  "farrukhsadykov@gmail.com", subject: "job", body: "job completed"
+            mail to:  "leiladevops@gmail.com", subject: "job", body: "job completed"
         }
     }
 }
