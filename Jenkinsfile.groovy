@@ -1,5 +1,6 @@
 pipeline{
     agent any
+    parameters {string(defaultValue: "plan", description: "plan/apply'', name: 'USER_ACTION')}
     stages{
         stage("Run Command"){
             steps{
@@ -67,7 +68,7 @@ pipeline{
         stage("Clone VPC Repo"){
             steps{
                 ws("terraform/"){
-                    git "https://github.com/farrukh90/infrastructure_april.git"
+                    git "https://github.com/LeilaDev/infrastructure_april.git"
                 }
             }
         }
